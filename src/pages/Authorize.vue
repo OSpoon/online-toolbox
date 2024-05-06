@@ -10,8 +10,8 @@ axios
   .post("https://gitee.com/oauth/token", {
     grant_type: "authorization_code",
     code,
-    client_id: import.meta.env.client_id,
-    client_secret: import.meta.env.client_secret,
+    client_id: import.meta.env.CLIENT_ID,
+    client_secret: import.meta.env.CLIENT_SECRET,
     redirect_uri,
   })
   .then((res) => {
