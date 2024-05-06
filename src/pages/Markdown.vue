@@ -4,11 +4,12 @@ import { MdEditor } from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 
 const text = ref("# Hello Editor");
-const client_id =
-  "250ae102f9d11277e9c0268104e4dc5b7b75c3f697033e88f4c54417d6ddd01c";
+
 const redirect_uri = "https://online-toolbox.vercel.app/authorize";
 window.open(
-  `https://gitee.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code
+  `https://gitee.com/oauth/authorize?client_id=${
+    import.meta.env.client_id
+  }&redirect_uri=${redirect_uri}&response_type=code
 `,
   "_blank",
   "width=800,height=600,left=100,top=100"
