@@ -26,3 +26,16 @@ export function getLocalStorageWithExpiry(key: string) {
   }
   return item.value;
 }
+
+export const openWindow = () => {
+  window.open(
+    `https://gitee.com/oauth/authorize?client_id=${
+      import.meta.env.VITE_VERCEL_CLIENT_ID
+    }&redirect_uri=${
+      import.meta.env.VITE_VERCEL_REDIRECT_URI
+    }&response_type=code
+`,
+    "_blank",
+    "width=800,height=600,left=100,top=100"
+  );
+};
