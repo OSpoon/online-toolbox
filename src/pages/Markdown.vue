@@ -4,11 +4,12 @@ import { MdEditor } from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 
 const text = ref("# Hello Editor");
-console.log(process.env);
 console.log(import.meta.env);
 const redirect_uri = "https://online-toolbox.vercel.app/authorize";
 window.open(
-  `https://gitee.com/oauth/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=${redirect_uri}&response_type=code
+  `https://gitee.com/oauth/authorize?client_id=${
+    import.meta.env.VITE_VERCEL_CLIENT_ID
+  }&redirect_uri=${redirect_uri}&response_type=code
 `,
   "_blank",
   "width=800,height=600,left=100,top=100"
