@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
-  { path: "/", component: () => import("../pages/Markdown.vue") },
+  // { path: "/", component: () => import("../pages/Markdown.vue") },
   { path: "/markdown", component: () => import("../pages/Markdown.vue") },
   { path: "/authorize", component: () => import("../pages/Authorize.vue") },
 ];
