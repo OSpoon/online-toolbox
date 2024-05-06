@@ -1,40 +1,12 @@
 <script setup lang="ts">
-import axios from "axios";
 import { useRoute } from "vue-router";
-import { setLocalStorageWithExpiry } from "../utils";
+import { onMounted } from "vue";
+import { authorizationCode } from "../utils/request";
 
 const route = useRoute();
-const code = route.query.code;
 
-axios
-  .post("https://gitee.com/oauth/token", {
-    grant_type: "authorization_code",
-    code,
-    client_id: import.meta.env.VITE_VERCEL_CLIENT_ID,
-    client_secret: import.meta.env.VITE_VERCEL_CLIENT_SECRET,
-    redirect_uri: import.meta.env.VITE_VERCEL_REDIRECT_URI,
-  })
-  .then((res) => {
-    console.log(res.data);
-    const { access_token, refresh_token, created_at, expires_in } = res.data;
-    setLocalStorageWithExpiry(
-      "access_token",
-      access_token,
-      created_at,
-      expires_in
-    );
-    setLocalStorageWithExpiry(
-      "refresh_token",
-      refresh_token,
-      created_at,
-      expires_in
-    );
-    window.close();
-  });
+onMounted(async () => {
+  const code = route.query.code;
+  await authorizationCode(code as string);
+});
 </script>
-
-<template>
-  <div></div>
-</template>
-
-<style scoped></style>
