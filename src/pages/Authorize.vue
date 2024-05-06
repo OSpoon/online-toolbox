@@ -16,7 +16,7 @@ axios
   })
   .then((res) => {
     console.log(res.data);
-    window.close();
+    // window.close();
   });
 </script>
 
