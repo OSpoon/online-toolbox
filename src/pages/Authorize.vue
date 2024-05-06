@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import axios from "axios";
 import { useRoute } from "vue-router";
+import { setLocalStorageWithExpiry } from "../utils";
 
 const route = useRoute();
 const code = route.query.code;
@@ -16,7 +17,20 @@ axios
   })
   .then((res) => {
     console.log(res.data);
-    // window.close();
+    const { access_token, refresh_token, created_at, expires_in } = res.data;
+    setLocalStorageWithExpiry(
+      "access_token",
+      access_token,
+      created_at,
+      expires_in
+    );
+    setLocalStorageWithExpiry(
+      "refresh_token",
+      refresh_token,
+      created_at,
+      expires_in
+    );
+    window.close();
   });
 </script>
 

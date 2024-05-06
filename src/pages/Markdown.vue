@@ -2,18 +2,22 @@
 import { ref } from "vue";
 import { MdEditor } from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
+import { getLocalStorageWithExpiry } from "../utils";
 
 const text = ref("# Hello Editor");
 console.log(import.meta.env);
 const redirect_uri = "https://online-toolbox.vercel.app/authorize";
-window.open(
-  `https://gitee.com/oauth/authorize?client_id=${
-    import.meta.env.VITE_VERCEL_CLIENT_ID
-  }&redirect_uri=${redirect_uri}&response_type=code
+if (!getLocalStorageWithExpiry("access_token")) {
+  window.open(
+    `https://gitee.com/oauth/authorize?client_id=${
+      import.meta.env.VITE_VERCEL_CLIENT_ID
+    }&redirect_uri=${redirect_uri}&response_type=code
 `,
-  "_blank",
-  "width=800,height=600,left=100,top=100"
-);
+    "_blank",
+    "width=800,height=600,left=100,top=100"
+  );
+}
+
 // const onUploadImg = async (files, callback) => {
 //   const res = await Promise.all(
 //     files.map((file) => {
