@@ -5,7 +5,6 @@ import { setLocalStorageWithExpiry } from "../utils";
 
 const route = useRoute();
 const code = route.query.code;
-const redirect_uri = "https://online-toolbox.vercel.app/authorize";
 
 axios
   .post("https://gitee.com/oauth/token", {
@@ -13,7 +12,7 @@ axios
     code,
     client_id: import.meta.env.VITE_VERCEL_CLIENT_ID,
     client_secret: import.meta.env.VITE_VERCEL_CLIENT_SECRET,
-    redirect_uri,
+    redirect_uri: import.meta.env.VITE_VERCEL_REDIRECT_URI,
   })
   .then((res) => {
     console.log(res.data);
