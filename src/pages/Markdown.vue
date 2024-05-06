@@ -29,7 +29,7 @@ const text = ref("# Hello Editor");
 </script>
 
 <template>
-  <MdEditor v-model="text" @onUploadImg="onUploadImg" />
+  <MdEditor v-model="text" />
 </template>
 
 <style scoped>
