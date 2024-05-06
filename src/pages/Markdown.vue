@@ -3,7 +3,7 @@ import { onMounted, ref } from "vue";
 import { MdEditor } from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 import { getLocalStorageWithExpiry, openWindow } from "../utils";
-import { refreshToken } from "../utils/request";
+import { createArticle, refreshToken } from "../utils/request";
 
 const text = ref("# Hello Editor");
 
@@ -36,10 +36,19 @@ onMounted(async () => {
 
 //   callback(res.map((item) => item.data.url));
 // };
+
+const onSave = async (v) => {
+  console.log(v);
+  await createArticle(v, {
+    owner: "xrkj",
+    repo: "myblog",
+    path: `${Date.now()}.md`,
+  });
+};
 </script>
 
 <template>
-  <MdEditor v-model="text" />
+  <MdEditor v-model="text" @onSave="onSave" />
 </template>
 
 <style scoped>

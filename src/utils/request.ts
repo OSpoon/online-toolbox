@@ -43,3 +43,23 @@ export const refreshToken = async () => {
   const { access_token, refresh_token, created_at, expires_in } = res.data;
   saveToken(access_token, refresh_token, created_at, expires_in);
 };
+
+export const createArticle = async (
+  content: string,
+  opt: {
+    owner: string;
+    repo: string;
+    path: string;
+  }
+) => {
+  const { owner, repo, path } = opt;
+  const res = await axios.post(
+    `https://gitee.com/api/v5/repos/${owner}/${repo}/contents/${path}`,
+    {
+      access_token: getLocalStorageWithExpiry("access_token"),
+      content: btoa(content),
+      message: `add ${path}`,
+    }
+  );
+  console.log(res.data);
+};
