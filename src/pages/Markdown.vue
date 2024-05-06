@@ -37,7 +37,7 @@ onMounted(async () => {
 //   callback(res.map((item) => item.data.url));
 // };
 
-const onSave = async (v) => {
+const onSave = async (v: string) => {
   console.log(v);
   await createArticle(v, {
     owner: "xrkj",
