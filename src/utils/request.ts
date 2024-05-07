@@ -63,3 +63,25 @@ export const createArticle = async (
   );
   console.log(res.data);
 };
+
+export const trees = async (opt: { owner: string; repo: string }) => {
+  const { owner, repo } = opt;
+  const access_token = getLocalStorageWithExpiry("access_token");
+  const res = await axios.get(
+    `https://gitee.com/api/v5/repos/${owner}/${repo}/git/trees/master?access_token=${access_token}`
+  );
+  return res.data;
+};
+
+export const content = async (opt: {
+  owner: string;
+  repo: string;
+  path: string;
+}) => {
+  const { owner, repo, path } = opt;
+  const access_token = getLocalStorageWithExpiry("access_token");
+  const res = await axios.get(
+    `https://gitee.com/api/v5/repos/${owner}/${repo}/contents/${path}?access_token=${access_token}`
+  );
+  return res.data;
+};
