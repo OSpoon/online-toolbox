@@ -5,12 +5,18 @@ import {
   AppstoreOutlined,
   SettingOutlined,
 } from "@ant-design/icons-vue";
+import { createFromIconfontCN } from "@ant-design/icons-vue";
 import { MenuProps } from "ant-design-vue";
-const current = ref<string[]>(["mail"]);
+
+const IconFont = createFromIconfontCN({
+  scriptUrl: "//at.alicdn.com/t/c/font_4535631_1vmccnee7pe.js",
+});
+
+const current = ref<string[]>(["app"]);
 const items = ref<MenuProps["items"]>([
   {
-    key: "mail",
-    icon: () => h(MailOutlined),
+    key: "gitee",
+    icon: () => h(IconFont, { type: "icon-gitee" }),
     label: "Navigation One",
     title: "Navigation One",
   },
